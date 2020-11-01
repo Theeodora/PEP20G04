@@ -5,6 +5,7 @@
 # The function will return a list with a int values ordered from largest to smallest.
 # example [1, True, '123', False, 6, ()] will be transformed into [123, 6, 1, 1, 0, 0]
 
+
 def ordered_ints(given_list):
     """
     :param given_list: List of which elements have to be converted and reversed sorted
@@ -40,7 +41,7 @@ print(ordered_ints([1, True, '123', False, 6, ()]))
 
 def sum_of_square(n):
     """
-    :param n: Int that indicates the numer of iterations
+    :param n: Int that indicates the number of iterations
     :return: Result of sum of square (ex. (1^2)+(2^2)+(3^2)...(n^2))
     """
     pass
@@ -96,4 +97,4 @@ def process_text(given_string):
     return new_tuple
 
 
-print("The proccessed text is: ", process_text('1234567a Text de te5t'))
+print("The processed text is: ", process_text('1234567a Text de te5t'))
