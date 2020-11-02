@@ -71,5 +71,3 @@ b=int(function_with_smallest_result[6:8])
 c=int(function_with_smallest_result[-1])
 x=0
 print(build(a,b,c))
-
-
