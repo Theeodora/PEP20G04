@@ -31,9 +31,12 @@
 # If as a result of the change side will be less then or equal to 0 then method should raise a different exception
 # When a side is modified by some value all other sides need to be modified by the fraction of the change to maintain
 # the same triangle angles. For example if A increase by +1 then B = ((A+1)/A)*B and C = ((A+1)/A)*C
+# 10P
+# Create an object from your class with default constructor values and modify angle AB by +30 degrees and side A by +1.5
 
 from math import cos, acos
 import Homework_module5_Exceptions as My_exception
+
 
 class Triangle:
     def __init__(self, a=1, b=1, c=1, ab=60, bc=60, ca=60):
@@ -43,7 +46,7 @@ class Triangle:
         self.AB = ab
         self.BC = bc
         self.CA = ca
-        self.modify_side('A',0.5)
+        self.modify_side('A', 0.5)
         self.modify_angle('AB', 30)
 
     def modify_angle(self, angle, degrees):
@@ -115,12 +118,6 @@ class Triangle:
         print("C side is:", self.C)
 
 
-# 10P
-# Create an object from your class with default constructor values and modify angle AB by +30 degrees and side A by +1.5
+ObjTriangle = Triangle(1, 1, 1, 60, 60, 60)
 
-
-ObjTriangle = Triangle()
-
-ObjTriangle.__init__(1,1,1,60,60,60)
-# ObjTriangle.modify_side('A', 1.5)
 # <your code here>
