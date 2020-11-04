@@ -11,7 +11,6 @@ def ordered_ints(given_list):
     :param given_list: List of which elements have to be converted and reversed sorted
     :return: New sorted list of integers
     """
-    pass
     for element in range(0, len(given_list)):
         if type(given_list[element]) == int:
             print("Element is already an int. Nothing to do.")
@@ -44,7 +43,6 @@ def sum_of_square(n):
     :param n: Int that indicates the number of iterations
     :return: Result of sum of square (ex. (1^2)+(2^2)+(3^2)...(n^2))
     """
-    pass
     if n == 1:
         return 1
     else:
@@ -63,7 +61,6 @@ def factorial_of_squares(n):
     :param n: Number of iterations
     :return: Factorial of square
     """
-    pass
     if n == 1:
         return 1
     else:
@@ -82,7 +79,6 @@ print("The factorial of squares for 5 is:", factorial_of_squares(5))
 # example: "1234567a Text de te5t" will become  ("1234567A", "_ext_de_te_t")
 
 def process_text(given_string):
-    pass
     if not type(given_string) == str:
         print("The input have to be a string.")
         StopIteration
