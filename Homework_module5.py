@@ -34,7 +34,7 @@
 # 10P
 # Create an object from your class with default constructor values and modify angle AB by +30 degrees and side A by +1.5
 
-from math import cos, acos
+from math import cos, acos, degrees
 import Homework_module5_Exceptions as My_exception
 
 
@@ -60,8 +60,8 @@ class Triangle:
             self.C = (self.A ** 2 + self.B ** 2 - 2 * self.A * self.B * cos(self.AB)) ** (1 / 2)
             # acos can be calculated within the interval [-1,1] everything that would not be in this interval
             # will cause a ValueError.
-            self.BC = acos((self.B ** 2 + self.C ** 2 - self.A ** 2) / 2 * self.B * self.C)
-            self.CA = acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / 2 * self.C * self.A)
+            self.BC = acos((self.B ** 2 + self.C ** 2 - self.A ** 2) / (2 * self.B * self.C))
+            self.CA = acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A))
         elif angle == 'BC':
             self.BC += degrees
             if self.BC > 180:
@@ -69,8 +69,8 @@ class Triangle:
             elif self.BC < 0:
                 raise My_exception.ValueToSmall
             self.A = (self.C ** 2 + self.B ** 2 - 2 * self.C * self.B * cos(self.BC)) ** (1 / 2)
-            self.AB = acos((self.B ** 2 + self.B ** 2 - self.C ** 2) / 2 * self.A * self.B)
-            self.CA = acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / 2 * self.C * self.A)
+            self.AB = acos((self.B ** 2 + self.B ** 2 - self.C ** 2) / (2 * self.A * self.B))
+            self.CA = acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A))
         elif angle == 'AC':
             self.CA += degrees
             if self.CA > 180:
@@ -78,8 +78,8 @@ class Triangle:
             elif self.CA < 0:
                 raise My_exception.ValueToSmall
             self.B = (self.C ** 2 + self.A ** 2 - 2 * self.C * self.A * cos(self.CA)) ** (1 / 2)
-            self.AB = acos((self.B ** 2 + self.B ** 2 - self.C ** 2) / 2 * self.A * self.B)
-            self.BC = acos((self.C ** 2 + self.B ** 2 - self.A ** 2) / 2 * self.C * self.B)
+            self.AB = acos((self.B ** 2 + self.B ** 2 - self.C ** 2) / (2 * self.A * self.B))
+            self.BC = acos((self.C ** 2 + self.B ** 2 - self.A ** 2) / (2 * self.C * self.B))
         else:
             raise My_exception.InvalidAngleName
         print("AB angle is:", self.AB)
@@ -118,6 +118,7 @@ class Triangle:
         print("C side is:", self.C)
 
 
-ObjTriangle = Triangle(1, 1, 1, 60, 60, 60)
-
+ObjTriangle = Triangle()
+ObjTriangle.modify_angle('AB', 30)
+ObjTriangle.modify_side('A', 0.5)
 # <your code here>
