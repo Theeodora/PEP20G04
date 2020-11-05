@@ -46,8 +46,6 @@ class Triangle:
         self.AB = ab
         self.BC = bc
         self.CA = ca
-        self.modify_side('A', 0.5)
-        self.modify_angle('AB', 30)
 
     def modify_angle(self, angle, degrees):
         if angle == 'AB':
