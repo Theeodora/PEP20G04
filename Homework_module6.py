@@ -27,7 +27,6 @@ Iterating the object will return the lot numbers produced that day
 
 from datetime import date
 
-
 class Production:
 
     def __init__(self, starting_serial_nr, total_cars_produced):
@@ -50,27 +49,38 @@ class Production:
         serial_number -> variable used to get the serial number of each car.
                         It starts from 0 to total_cars_produced+1 and it used to increment the starting_serial_number,
                         which is append then to the serial list.
-        last_serial_number -> it is the serial number of the last produced car and it is used to calculate the lot numbers
-                              from today's production
-        lot_number -> counter initialised first with 0.
-        We know that a lot means 20 produced cars. This means that the lot number is increased by 1 while the last_serial_number is greater than 0.
-        copy_total_cars_produced will be decreased with 20 because we have 20 cars in a lot. (I did not want to change total-cars_produced so I just created
-        a copy to it)
-        The lot number is then added into lot list.
-        In the end of the while the lot list will incorporate all the lots done in a day.
+        copy_total_cars_produced -> copy of total cars produced today
+        copy_serial_numbers -> copy of the starting serial number from today
+        copy_serial_numbers is also how many cars were produced until today (because the count starts from 0)
+        so we check if it is divisible by 20. If it is it means that the lots done were full and the integer division -1
+        (because lot numbers starts from 0) is the number of lots done until today and lot_number takes the value of the
+        integer division. Then we start to count lots by adding 1 in lot_number and decrese cars produced today by 20 (20 cars in a lot)
+        if copy_serial_numbers is not divisible by 20 we check the full lots done by today. the lot number starts so from
+        that nr +1 because we start a new lot which is added to te list and then we calculate the remains cars to add to lots
+        after the lot is complete.
         """
-        print("Today's date is:", self.day)
-        print("The total cars produced today is", self.total_cars_produced)
-        print("The starting serial number for today is", self.starting_serial_nr)
         for serial_number in range(self.total_cars_produced + 1):
             self.serial.append(self.starting_serial_nr + serial_number)
         print("The serial numbers from today are: ", self.serial)
         copy_total_cars_produced = self.total_cars_produced
-        lot_number = 0
-        while copy_total_cars_produced > 0:
-            lot_number += 1
-            copy_total_cars_produced -= 20
-            self.lot.append(lot_number)
+        copy_serial_numbers = self.starting_serial_nr
+        if copy_serial_numbers % 20 == 0:
+            lot_number = copy_serial_numbers / 20 -1
+            while copy_total_cars_produced > 0:
+                lot_number += 1
+                copy_total_cars_produced -= 20
+                self.lot.append(lot_number)
+                self.lot.sort()
+        else:
+            full_lots_until_today = (copy_serial_numbers // 20) - 1
+            lot_number = full_lots_until_today + 1
+            cars_to_complete_lot = self.starting_serial_nr - lot_number * 20
+            copy_total_cars_produced = self.total_cars_produced - cars_to_complete_lot
+            while copy_total_cars_produced > 0:
+                lot_number += 1
+                copy_total_cars_produced -= 20
+                self.lot.append(lot_number)
+                self.lot.sort()
         print("The lot numbers from today are:", self.lot)
 
     def left_handed_cars(self):
