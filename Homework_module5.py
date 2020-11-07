@@ -56,8 +56,6 @@ class Triangle:
                 raise My_exception.ValueToSmall
             print(self.C)
             self.C = (self.A ** 2 + self.B ** 2 - 2 * self.A * self.B * cos(self.AB)) ** (1 / 2)
-            # acos can be calculated within the interval [-1,1] everything that would not be in this interval
-            # will cause a ValueError.
             self.BC = acos((self.B ** 2 + self.C ** 2 - self.A ** 2) / (2 * self.B * self.C))
             self.CA = acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A))
         elif angle == 'BC':
@@ -119,4 +117,3 @@ class Triangle:
 ObjTriangle = Triangle()
 ObjTriangle.modify_angle('AB', 30)
 ObjTriangle.modify_side('A', 0.5)
-# <your code here>
