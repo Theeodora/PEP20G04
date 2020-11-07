@@ -54,7 +54,8 @@ class Production:
                               from today's production
         lot_number -> counter initialised first with 0.
         We know that a lot means 20 produced cars. This means that the lot number is increased by 1 while the last_serial_number is greater than 0.
-        last_serial_number will be decreased with 20 because we have 20 cars in a lot.
+        copy_total_cars_produced will be decreased with 20 because we have 20 cars in a lot. (I did not want to change total-cars_produced so I just created
+        a copy to it)
         The lot number is then added into lot list.
         In the end of the while the lot list will incorporate all the lots done in a day.
         """
@@ -64,11 +65,11 @@ class Production:
         for serial_number in range(self.total_cars_produced + 1):
             self.serial.append(self.starting_serial_nr + serial_number)
         print("The serial numbers from today are: ", self.serial)
-        last_serial_number = self.serial[-1]
+        copy_total_cars_produced = self.total_cars_produced
         lot_number = 0
-        while last_serial_number > 0:
+        while copy_total_cars_produced > 0:
             lot_number += 1
-            last_serial_number -= 20
+            copy_total_cars_produced -= 20
             self.lot.append(lot_number)
         print("The lot numbers from today are:", self.lot)
 
