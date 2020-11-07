@@ -54,28 +54,27 @@ class Triangle:
                 raise My_exception.ValueToBig
             elif self.AB < 0:
                 raise My_exception.ValueToSmall
-            print(self.C)
+            self.C = (self.A ** 2 + self.B ** 2 - 2 * self.A * self.B * cos(radians(self.AB))) ** (1 / 2)
             self.BC = degrees(acos((self.B ** 2 + self.C ** 2 - self.A ** 2) / (2 * self.B * self.C)))
             self.CA = degrees(acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A)))
-            self.C = (self.A ** 2 + self.B ** 2 - 2 * self.A * self.B * cos(radians(self.AB))) ** (1 / 2)
         elif angle == 'BC':
             self.BC += deg
             if self.BC > 180:
                 raise My_exception.ValueToBig
             elif self.BC < 0:
                 raise My_exception.ValueToSmall
+            self.A = (self.C ** 2 + self.B ** 2 - 2 * self.C * self.B * cos(radians(self.BC))) ** (1 / 2)
             self.AB = degrees(acos((self.B ** 2 + self.B ** 2 - self.C ** 2) / (2 * self.A * self.B)))
             self.CA = degrees(acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A)))
-            self.A = (self.C ** 2 + self.B ** 2 - 2 * self.C * self.B * cos(radians(self.BC))) ** (1 / 2)
         elif angle == 'AC':
             self.CA += deg
             if self.CA > 180:
                 raise My_exception.ValueToBig
             elif self.CA < 0:
                 raise My_exception.ValueToSmall
+            self.B = (self.C ** 2 + self.A ** 2 - 2 * self.C * self.A * cos(radians(self.CA))) ** (1 / 2)
             self.AB = degrees(acos((self.B ** 2 + self.B ** 2 - self.C ** 2) / (2 * self.A * self.B)))
             self.BC = degrees(acos((self.C ** 2 + self.B ** 2 - self.A ** 2) / (2 * self.C * self.B)))
-            self.B = (self.C ** 2 + self.A ** 2 - 2 * self.C * self.A * cos(radians(self.CA))) ** (1 / 2)
         else:
             raise My_exception.InvalidAngleName
         print("AB angle is:", self.AB)
@@ -84,29 +83,30 @@ class Triangle:
 
     def modify_side(self, side, meters):
         if side == 'A':
-            self.A += meters
             if self.A <= 0:
                 raise My_exception.SmallSideValue
             elif self.B + self.C <= self.A:
                 raise My_exception.LargeSideValue
             self.B = ((self.A + meters) / self.A) * self.B
             self.C = ((self.A + meters) / self.A) * self.C
+            self.A += meters
         elif side == 'B':
-            self.B += meters
+
             if self.B <= 0:
                 raise My_exception.SmallSideValue
             elif self.A + self.C <= self.B:
                 raise My_exception.LargeSideValue
             self.A = ((self.B + meters) / self.B) * self.A
             self.C = ((self.B + meters) / self.B) * self.C
+            self.B += meters
         elif side == 'C':
-            self.C += meters
             if self.C <= 0:
                 raise My_exception.SmallSideValue
             elif self.A + self.B <= self.C:
                 raise My_exception.LargeSideValue
             self.B = ((self.C + meters) / self.C) * self.B
             self.A = ((self.C + meters) / self.C) * self.A
+            self.C += meters
         else:
             raise My_exception.InvalidSideName
         print("A side is:", self.A)
