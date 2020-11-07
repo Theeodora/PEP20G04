@@ -111,5 +111,4 @@ lot_numb_file = open('File_with_lot_numbers', 'w+')
 for lot_numb in car_production.__iter__():
     lot_numb_file.write(str(lot_numb))
     lot_numb_file.write('\n')
-
 lot_numb_file.close()
